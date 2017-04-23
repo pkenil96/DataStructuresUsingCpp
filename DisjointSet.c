@@ -15,6 +15,9 @@ DS createDisjointSet(int n){
     newSet->n=n;
     newSet->parent=(int*) malloc (sizeof(int) * n);
 
+    /*
+	Initially all the elements are independent; so the element itself is its parent
+    */
     for(i=0;i<n;i++){
         newSet->parent[i]=i;
     }
@@ -23,21 +26,23 @@ DS createDisjointSet(int n){
 
 void MergeSet(DS ds, int x ,int y){
     int i,temp,swap;
+	/*in case the elements already belongs to the same set; return*/
     if(FindSet(ds,x)==FindSet(ds,y))
         return;
+    
     if(x>y){
-        //swap
         swap=x;
         x=y;
         y=swap;
     }
     temp = ds->parent[x];
-    ds->parent[x]=y;
+   //setting the parent of x to 
+    ds->parent[x]=ds->parent[y];
 
-
+   
     for(i=0;i<ds->n;i++){
         if(ds->parent[i]==temp)
-            ds->parent[i]=y;
+            ds->parent[i]=ds->parent[y];
     }
 }
 
@@ -60,14 +65,14 @@ void displayDisjointSet(DS ds){
     }
    
     for(i=0;i<n;i++){
-        displayed[i] = ds->parent[i];
-
+        //displayed[i] = ds->parent[i];
+        hold = ds->parent[i];
         if(displayed[i]==1)
             continue;
 
         printf("Set %d : {",setnum++);
         for(j=i;j<n;j++){
-            if((ds->parent[j]==displayed[i]) && (ds->parent[j]!=1)){
+            if((ds->parent[j]==hold) && (ds->parent[j]!=1)){
                 printf("%d,",j);
                 displayed[j]=1;
             }
