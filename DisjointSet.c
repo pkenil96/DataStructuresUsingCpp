@@ -72,7 +72,7 @@ void displayDisjointSet(DS ds){
 
         printf("Set %d : {",setnum++);
         for(j=i;j<n;j++){
-            if((ds->parent[j]==hold) && (ds->parent[j]!=1)){
+            if((ds->parent[j]==hold) && (displayed[j]!=1)){
                 printf("%d,",j);
                 displayed[j]=1;
             }
