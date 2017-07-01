@@ -47,6 +47,10 @@ void addEdge(struct Graph* graph, int src, int des){
     temp->next = desNode;
     desNode->next = NULL;
 
+	
+//Below segment needs to be included only for undirected graphs
+
+//--------------------------------------//	
 /*appending des node to the src node*/
     temp = graph->adj+des;
     while(temp->next)
@@ -55,6 +59,7 @@ void addEdge(struct Graph* graph, int src, int des){
     temp->next = srcNode;
    srcNode->next = NULL;
 }
+//--------------------------------------//
 
 void displayGraph(struct Graph* graph){
     struct ListNode* temp;
@@ -68,29 +73,4 @@ void displayGraph(struct Graph* graph){
         cout << "NULL";
         cout << endl;
     }
-}
-
-
-int main(int argc, char* argv[]){
-
-
-	int n,m,a,b;
-	cin >> n >> m;
-
-    struct Graph* G;
-    G = createGraph(n+1);
-    
-    if(G==NULL){
-    	cout << "Couldn't allocate memory for graph!" << endl;
-    	exit(-1);
-    }
-
-    for(int i=0;i<m;i++){
-    	cin >> a >> b;
-    	addEdge(G,a,b);
-    }
-    displayGraph(G);
-
-    return 0;
-    
 }
