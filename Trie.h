@@ -61,30 +61,3 @@ int checkIfpresent(struct TrieNode* root, const char* key){
 	  return 1;//exact key was found in the dictionary
    return 0;
 }
-
-int main(int argc, char const *argv[])
-{
-	/* code */
-	char* key_present[] = {"No such key found","Key is present"};
-	struct TrieNode* root = createNode();
-	insertIntoTrie(root,"pk");
-	insertIntoTrie(root,"kent");
-	insertIntoTrie(root,"kem");
-	insertIntoTrie(root,"kentucky");
-	insertIntoTrie(root,"kips");
-	insertIntoTrie(root,"kosta");
-
-	int x = checkIfpresent(root,"ki");
-	cout << key_present[x] << endl;	
-	x = checkIfpresent(root,"kenil");
-	cout << key_present[x] << endl;
-	 x = checkIfpresent(root,"kips");
-	cout << key_present[x] << endl;
-	 x = checkIfpresent(root,"kosta");
-	cout << key_present[x] << endl;
-	 x = checkIfpresent(root,"lame");
-	cout << key_present[x] << endl;
-	 x = checkIfpresent(root,"shape");
-	cout << key_present[x] << endl;
-	return 0;
-}
